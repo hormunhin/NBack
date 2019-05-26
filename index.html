@@ -197,11 +197,12 @@
             </div>
             <div class="modal-body">
                 <table class="table table-striped" id="progress-score-table">
-                    <tr>
+                    <thead>
                         <th>#</th>
                         <th>Date</th>
                         <th>Average N Level</th>
-                    </tr>
+                    </thead>
+                    <tbody id="progress-score-tbody"></tbody>
                 </table>
             </div>
             <div class="modal-footer">
@@ -324,6 +325,17 @@
     <script src="js/Trial.js"></script>
     <script src="js/App.js"></script>
     <script src="js/History.js"></script>
+
+    <!-- 
+        TODO: need to manage js lib/dependencies properly; following are only used in js/History.js 
+        Reference:
+        https://datatables.net/plug-ins/sorting/
+        https://datatables.net/blog/2014-12-18
+    -->
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/datetime-moment.js"></script>
 </body>
 
 </html>

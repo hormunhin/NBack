@@ -25,7 +25,7 @@ function addSessionToHistory(date, meanN) {
 
 // gets all items in history and prints them to the appropriate element
 function printHistory() {
-	var tableOutput = document.getElementById("progress-score-table");
+	var tableOutput = document.getElementById("progress-score-tbody");
 
 	// remove previous score rows, leaving the header row intact
 	var scoreRows = document.getElementsByClassName("score-row");
@@ -40,10 +40,13 @@ function printHistory() {
 			var keyDate = new Date();
 			keyDate.setTime(parseInt(key));
 			var dateOptions = {
-				weekday: "short",
+				// weekday: "short",
 				year: "numeric",
-				month: "short",
-				day: "numeric",
+				// month: "short",
+				// month: "numeric",
+				month: "2-digit",
+				// day: "numeric",
+				day: "2-digit",
 				hour: "2-digit",
 				minute: "2-digit"
 			};
@@ -55,7 +58,7 @@ function printHistory() {
 			var rowScore = document.createElement('td');
 
 			var rowNumText = document.createTextNode(i + 1);
-			var rowDateText = document.createTextNode(keyDate.toLocaleTimeString("en-GB", dateOptions));
+			var rowDateText = document.createTextNode(keyDate.toLocaleTimeString("en-US", dateOptions));
 			var rowScoreText = document.createTextNode(value);
 
 			rowNum.appendChild(rowNumText);
@@ -81,5 +84,12 @@ function clearHistory() {
 // show progress click event handler
 progressLink.addEventListener('click', function(event) {
 	printHistory();
+	$(document).ready(function(){
+		// TODO: why date sorting only takes in 'en-US' as locale?
+		$.fn.dataTable.moment( 'DD/MM/YY, HH:mm' );
+		// $.fn.dataTable.moment( 'MM/DD/YY, HH:mm' );
+
+		$('#progress-score-table').DataTable()
+	});
 	$('#progressModal').modal('show');
 });
